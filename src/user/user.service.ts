@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -110,4 +111,16 @@ export class UserService {
     return { message: `User with ID ${id} has been deleted successfully.` };
   }
 
+  //update status 
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = await this.usersRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    user.isApproved = updateUserDto.isApproved ?? user.isApproved;
+
+    return await this.usersRepository.save(user);
+  }
 }
