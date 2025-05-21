@@ -1,2 +1,2 @@
 # NodeJS_project
-GT Tech Academy NodeJS Project for Amlabu Favour and Iribama Rowland
+GT Tech Academy 14 NodeJS Project for Amlabu Favour and Worlu Iribama
